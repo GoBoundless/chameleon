@@ -1,7 +1,10 @@
+require 'new_relic/agent/instrumentation/controller_instrumentation'
+
 class Chameleon::WidgetsController < ApplicationController
   before_filter :find_widget
   before_filter :validate_key
   skip_before_filter :verify_authenticity_token
+  newrelic_ignore
 
   def show
     @data = @widget.data.call(@auth)
